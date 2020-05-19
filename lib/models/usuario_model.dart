@@ -1,5 +1,7 @@
 
+
 class UsuarioModel {
+  
   UsuarioModel({
     this.id,
     this.email,

@@ -5,7 +5,6 @@ import 'package:cuidapet_api/exceptions/user_notfound_exception.dart';
 import 'package:cuidapet_api/models/usuario_model.dart';
 import 'package:cuidapet_api/repositories/usuario_repository.dart';
 import 'package:cuidapet_api/utils/jwt_utils.dart';
-import 'package:jaguar_jwt/jaguar_jwt.dart';
 
 import 'dto/login_rq.dart';
 
@@ -15,7 +14,7 @@ class LoginController extends ResourceController {
   @Operation.post()
   Future<Response> login(@Bind.body() LoginRQ request) async {
     try {
-      final user = await _repository.validateLogin(request.login, request.senha, facebook: request.facebookLogin);
+      final user = await _repository.validateLogin(request.login, request.senha, facebook: request.facebookLogin ?? false);
 
       return Response.ok({
         'access_token': JwtUtils.generateJWT(user.id),
@@ -29,8 +28,9 @@ class LoginController extends ResourceController {
       } else {
         return Response.forbidden(body: {'message': e.message});
       }
-    } catch (e) {
+    } catch (e, s) {
       print(e);
+      print(s);
       return Response.serverError();
     }
   }
