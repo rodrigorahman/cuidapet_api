@@ -11,7 +11,7 @@ class FornecedoresRepository {
     try {
       conn = await DatabaseConnection.openConnection();
       final result = await conn.query(''' 
-        SELECT f.id, f.nome, f.logo,
+        SELECT f.id, f.nome, f.logo, f.categorias_fornecedor_id,
           (6371 *
             acos(
                             cos(radians($lat)) *
@@ -30,8 +30,11 @@ class FornecedoresRepository {
             (e) => {
               'id': e['id'] as int,
               'nome': e['nome'] as String,
-              'logo': e['logo'] as String,
+              'logo': (e['logo'] as Blob)?.toString(),
               'distancia': e['distancia'] as double,
+              'categoria': {
+                'id': e['categorias_fornecedor_id'] as int
+              }
             },
           )
           .toList();
@@ -60,7 +63,7 @@ class FornecedoresRepository {
       return FornecedorModel(
         id: data['id'] as int,
         nome: data['nome'] as String,
-        logo: data['logo'] as String,
+        logo: (data['logo'] as Blob)?.toString(),
         imagem: data['imagem'] as String,
         endereco: data['endereco'] as String,
         telefone: data['telefone'] as String,

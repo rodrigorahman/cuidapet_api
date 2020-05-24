@@ -8,13 +8,15 @@ import '../cuidapet_api.dart';
 class LoginRouters implements IRoutersConfig {
   @override
   void configure(Router router) {
-    router.route("/login").link(() => LoginController());
+    
+    router.route("/login")
+      .link(() => LoginController());
     
     router.route("/login/password")
       .link(() => JwtAuthenticationMiddleware())
       .link(() => LoginController());
 
-    router.route("/login/register")
+    router.route("/login/cadastrar")
       .link(() => LoginCadastroController());
 
     router.route("/login/refresh/")
@@ -22,6 +24,13 @@ class LoginRouters implements IRoutersConfig {
 
     router.route("/login/confirmar")
       .link(() => JwtAuthenticationMiddleware())
-      .link(() => LoginController(),);
+      .link(() => LoginController());
+
+
+    router.route("/login/isSupplier")
+      .link(() => JwtAuthenticationMiddleware())
+      .link(() => LoginController());
+    
+
   }
 }

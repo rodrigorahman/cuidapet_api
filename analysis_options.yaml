@@ -1,7 +1,9 @@
 analyzer:
+  enable-experiment:
+    - extension-methods
   strong-mode:
     implicit-casts: false
-
+    
 linter:
   rules:
     - always_declare_return_types

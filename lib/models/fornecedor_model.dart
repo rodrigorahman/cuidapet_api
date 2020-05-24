@@ -38,7 +38,7 @@ class FornecedorModel {
       'telefone': telefone,
       'latitude': latitude,
       'longitude': longitude,
-      'categoria': categoria.toMap()
+      'categoria': categoria?.toMap()
     };
   }
 }

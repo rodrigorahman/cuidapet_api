@@ -43,7 +43,7 @@ class LoginController extends ResourceController {
 
       final refreshToken = await _repository.updateTokenUser(loginRQ, user.id, token);
       return Response.ok({
-        'access_token': JwtUtils.generateJWT(user.id),
+        'access_token': 'Bearer $token',
         'refresh_token': refreshToken,
       });
     } on UserNotFoundException catch (e) {
@@ -54,11 +54,9 @@ class LoginController extends ResourceController {
   @Operation.put()
   Future<Response> updatePassword(@Bind.body() ChangePasswordRQ changePasswordRQ) async {
     try {
-      
       final UsuarioModel user = request.attachments['user'] as UsuarioModel;
       await _repository.updatePassword(user.id, changePasswordRQ.password);
       return Response.ok({});
-
     } catch (e) {
       print(e);
       return Response.serverError(
@@ -66,4 +64,12 @@ class LoginController extends ResourceController {
       );
     }
   }
+
+  @Operation.get()
+  Future<Response> isSupplier() async {
+    final userToken = request.attachments['user'] as UsuarioModel;
+    final user =  await _repository.getById(userToken.id);
+    return Response.ok({'isSupplier': user.fornecedorId != null});
+  }
+
 }

@@ -9,7 +9,7 @@ import 'package:mysql1/mysql1.dart';
 class UsuarioRepository {
   Future<UsuarioModel> validateLogin(String email, String senha, {bool facebook = false}) async {
     MySqlConnection conn;
-
+    print(CriptyUtils.generateSHA256Hash('123123'));
     try {
       conn = await DatabaseConnection.openConnection();
       Results result;
@@ -88,6 +88,7 @@ class UsuarioRepository {
           androidToken: (u[5] as Blob).toString(),
           refrehToken: (u[6] as Blob).toString(),
           imgAvatar: (u[7] as Blob).toString(),
+          fornecedorId: u[8] as int
         );
       }
     } on MySqlException catch (e) {
@@ -129,4 +130,53 @@ class UsuarioRepository {
       await conn?.close();
     }
   }
+
+  Future<bool> validateRefreshToken(int id, String refreshToken) async {
+    MySqlConnection conn;
+
+    try {
+      conn = await DatabaseConnection.openConnection();
+      final result = await conn.query("select * from usuario where refresh_token = ? and id = ?", [refreshToken, id]);
+      return result.isNotEmpty;
+    } on MySqlException catch (e) {
+      print(e);
+      rethrow;
+    } finally {
+      await conn?.close();
+    }
+  }
+
+  Future<void> updateRefreshToken(int id, String refreshToken) async {
+    MySqlConnection conn;
+
+    try {
+      conn = await DatabaseConnection.openConnection();
+      await conn.query("update usuario set refresh_token = ? where id = ?", [refreshToken, id]);
+    } on MySqlException catch (e) {
+      print(e);
+      rethrow;
+    } finally {
+      await conn?.close();
+    }
+  }
+
+   Future<UsuarioModel> createUser(String email, String senha) async {
+    MySqlConnection conn;
+
+    try {
+      conn = await DatabaseConnection.openConnection();
+      final result = await conn.query("insert usuario(email, tipo_cadastro, senha) values(?, ?, ?)", [email, 'APP', CriptyUtils.generateSHA256Hash(senha)]);
+      final userId = result.insertId;
+      return UsuarioModel(
+        id: userId,
+      );
+    } on MySqlException catch (e) {
+      print(e);
+      rethrow;
+    } finally {
+      await conn?.close();
+    }
+  }
+
+
 }

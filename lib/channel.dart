@@ -1,7 +1,9 @@
 import 'package:cuidapet_api/config/database_params_config.dart';
+import 'package:cuidapet_api/routers/agendamento_router.dart';
 import 'package:cuidapet_api/routers/categorias_router.dart';
 import 'package:cuidapet_api/routers/fornecedor_router.dart';
 import 'package:cuidapet_api/routers/login_router.dart';
+import 'package:cuidapet_api/routers/usuario_router.dart';
 
 import 'cuidapet_api.dart';
 
@@ -42,6 +44,8 @@ class CuidapetApiChannel extends ApplicationChannel {
     LoginRouters().configure(router);
     CategoriasRouters().configure(router);
     FornecedorRouters().configure(router);
+    AgendamentoRouter().configure(router);
+    UsuarioRouters().configure(router);
     return router;
   }
 }

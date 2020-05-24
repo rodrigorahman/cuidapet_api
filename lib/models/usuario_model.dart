@@ -10,6 +10,7 @@ class UsuarioModel {
     this.androidToken,
     this.refrehToken,
     this.imgAvatar,
+    this.fornecedorId,
   });
 
   int id;
@@ -19,6 +20,7 @@ class UsuarioModel {
   String androidToken;
   String refrehToken;
   String imgAvatar;
+  int fornecedorId;
 
   Map<String, dynamic> toMap() {
     return {
@@ -29,6 +31,7 @@ class UsuarioModel {
       'androidToken': androidToken,
       'refrehToken': refrehToken,
       'imgAvatar': imgAvatar,
+      'fornecedorId': fornecedorId
     };
   }
 }
