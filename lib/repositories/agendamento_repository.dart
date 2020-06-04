@@ -140,4 +140,48 @@ class AgendamentoRepository {
       await conn.close();
     }
   }
+
+  Future<void> alterarStatus(int agendamento, String status) async {
+    MySqlConnection conn;
+
+    try {
+      conn = await DatabaseConnection.openConnection();
+      await conn.transaction((_) async {
+        await conn.query(''' 
+            update 
+              agendamento set status = ?
+              where id = ?
+            ''', [status, agendamento]);
+      });
+    } catch (e) {
+      print(e);
+      rethrow;
+    } finally {
+      await conn.close();
+    }
+  }
+
+  Future<Map<String,String>> getTokenUsuarioMensagem(int agendamento) async {
+    MySqlConnection conn;
+
+    try {
+      conn = await DatabaseConnection.openConnection();
+      final result = await conn.query('''
+        select u.ios_token, u.android_token from agendamento a
+        inner join usuario u on a.usuario_id = u.id
+        where a.id = ?
+      ''', [agendamento]);
+
+      final r = result.first;
+      return {
+        'ios': (r[0] as Blob)?.toString(),
+        'android': (r[1] as Blob)?.toString(),
+      };
+    } catch (e) {
+      print(e);
+      rethrow;
+    } finally {
+      await conn.close();
+    }
+  }
 }

@@ -23,16 +23,14 @@ class AgendamentoRouter implements IRoutersConfig {
           .buscarAgendamentoDoFornecedor(request.attachments['user'] as UsuarioModel);
       });
 
-    router.route('/chats/usuario/[:usuario]')
+      router.route('/agendamento/:id/status/:status')
       .link(() => JwtAuthenticationMiddleware())
-      .link(() => AgendamentoController());
+      .linkFunction((request) async {
+        print(request.path.variables);
+        final v = request.path.variables;
+        await AgendamentoController().alteraStatus(int.parse(v['id']) , v['status']);
+        return Response.ok({});
+      });
 
-    router.route('/chats/fornecedor/:fornecedor')
-      .link(() => JwtAuthenticationMiddleware())
-      .link(() => AgendamentoController());
-      
-    router.route('/chats/close/:id')
-      .link(() => JwtAuthenticationMiddleware())
-      .link(() => AgendamentoController());
   }
 }

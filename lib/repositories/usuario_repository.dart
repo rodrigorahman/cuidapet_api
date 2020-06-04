@@ -81,15 +81,14 @@ class UsuarioRepository {
       } else {
         final u = result.first;
         return UsuarioModel(
-          id: u[0] as int,
-          email: u[1] as String,
-          tipoCadastro: u[3] as String,
-          iosToken: (u[4] as Blob).toString(),
-          androidToken: (u[5] as Blob).toString(),
-          refrehToken: (u[6] as Blob).toString(),
-          imgAvatar: (u[7] as Blob).toString(),
-          fornecedorId: u[8] as int
-        );
+            id: u[0] as int,
+            email: u[1] as String,
+            tipoCadastro: u[3] as String,
+            iosToken: (u[4] as Blob).toString(),
+            androidToken: (u[5] as Blob).toString(),
+            refrehToken: (u[6] as Blob).toString(),
+            imgAvatar: (u[7] as Blob).toString(),
+            fornecedorId: u[8] as int);
       }
     } on MySqlException catch (e) {
       print(e);
@@ -160,7 +159,7 @@ class UsuarioRepository {
     }
   }
 
-   Future<UsuarioModel> createUser(String email, String senha) async {
+  Future<UsuarioModel> createUser(String email, String senha) async {
     MySqlConnection conn;
 
     try {
@@ -178,5 +177,64 @@ class UsuarioRepository {
     }
   }
 
+  Future<void> updateImage(int id, String url) async {
+    MySqlConnection conn;
 
+    try {
+      conn = await DatabaseConnection.openConnection();
+      await conn.query("update usuario set img_avatar = ? where id = ?", [url, id]);
+    } on MySqlException catch (e) {
+      print(e);
+      rethrow;
+    } finally {
+      await conn?.close();
+    }
+  }
+
+  Future<void> updateDeviceToken(int id, String token, String platform) async {
+    MySqlConnection conn;
+
+    try {
+      conn = await DatabaseConnection.openConnection();
+      if(platform == 'IOS') {
+        await conn.query("update usuario set ios_token = ? where id = ?", [token, id]);
+      }else {
+        await conn.query("update usuario set android_token = ? where id = ?", [token, id]);
+      }
+      
+    } on MySqlException catch (e) {
+      print(e);
+      rethrow;
+    } finally {
+      await conn?.close();
+    }
+  }
+
+  Future<UsuarioModel> getByFornecedorId(int fornecedorId) async {
+    MySqlConnection conn;
+
+    try {
+      conn = await DatabaseConnection.openConnection();
+      final result = await conn.query("select * from usuario where fornecedor_id = ?", [fornecedorId]);
+      if (result.isEmpty) {
+        throw UserNotFoundException(message: "Usuário ou senha inválidos");
+      } else {
+        final u = result.first;
+        return UsuarioModel(
+            id: u[0] as int,
+            email: u[1] as String,
+            tipoCadastro: u[3] as String,
+            iosToken: (u[4] as Blob).toString(),
+            androidToken: (u[5] as Blob).toString(),
+            refrehToken: (u[6] as Blob).toString(),
+            imgAvatar: (u[7] as Blob).toString(),
+            fornecedorId: u[8] as int);
+      }
+    } on MySqlException catch (e) {
+      print(e);
+      rethrow;
+    } finally {
+      await conn?.close();
+    }
+  }
 }

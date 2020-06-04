@@ -25,7 +25,7 @@ class JwtUtils {
     final claimSet = JwtClaim(
       issuer: accessToken,
       subject: 'RefreshToken',
-      expiry: DateTime.now().add(const Duration(days: 2)),
+      expiry: DateTime.now().add(const Duration(days: 365)),
       notBefore: DateTime.now().subtract(const Duration(days: 1)),
       issuedAt: DateTime.now(),
       otherClaims: <String, dynamic>{},

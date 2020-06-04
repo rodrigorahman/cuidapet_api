@@ -74,6 +74,12 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "dio",
+      "rootUri": "file:///Users/rodrigorahman/.pub-cache/hosted/pub.dartlang.org/dio-3.0.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
       "name": "front_end",
       "rootUri": "file:///Users/rodrigorahman/.pub-cache/hosted/pub.dartlang.org/front_end-0.1.14",
       "packageUri": "lib/",
@@ -380,7 +386,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-05-19T14:38:53.858596Z",
+  "generated": "2020-05-31T00:10:45.355917Z",
   "generator": "pub",
   "generatorVersion": "2.8.2"
 }
