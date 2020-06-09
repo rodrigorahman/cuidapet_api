@@ -32,5 +32,13 @@ class AgendamentoRouter implements IRoutersConfig {
         return Response.ok({});
       });
 
+      router.route('/agendamento/:id/iniciar-chat')
+      .link(() => JwtAuthenticationMiddleware())
+      .linkFunction((request) async {
+        final v = request.path.variables;
+        await AgendamentoController().iniciarChat(int.parse(v['id']));
+        return Response.ok({});
+      });
+
   }
 }

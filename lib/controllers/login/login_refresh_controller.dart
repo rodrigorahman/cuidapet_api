@@ -16,7 +16,7 @@ class LoginRefreshController extends ResourceController {
 
       if (token.length != 2 || token[0] != "Bearer") {
         return Response.badRequest(body: {'message': 'invalid token'});
-      } else if (refreshToken.length != 2 || refreshToken[0] != "Bearer") {
+      } else if (refreshToken?.length != 2 || refreshToken[0] != "Bearer") {
         return Response.badRequest(body: {'message': 'invalid refreshToken'});
       }
       final JwtClaim refrehtokenClaim = JwtUtils.getClaims(refreshToken[1]);

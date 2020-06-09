@@ -34,8 +34,8 @@ class ChatController extends ResourceController {
   @Operation.post()
   Future<Response> notificarUsuario(@Bind.body() NotificarUsuarioRequest request) async {
     final List<String> aparelhos = await _chatRepository.recuperarDeviceIdPorChat(request.chat, request.para);
-    await PushNotificationHelper.sendMessage(aparelhos, "Nova Mensagem", request.mensagem, {'type': 'CHAT_MESSAGE'});
-    print('terminou');
+    final chat = await _chatRepository.recuperarPorId(request.chat);
+    await PushNotificationHelper.sendMessage(aparelhos, "Nova Mensagem", request.mensagem, {'type': 'CHAT_MESSAGE', 'chat': chat.toMap()});
     return Response.ok({});
   }
 

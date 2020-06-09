@@ -10,6 +10,13 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `categorias_fornecedor` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome_categoria` VARCHAR(45) NULL,
+  `tipo_categoria` char(1) default 'P',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `fornecedor` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(200) NULL,
@@ -20,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `fornecedor` (
   `latlng` POINT NULL,
   `categorias_fornecedor_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_fornecedor_categorias_fornecedor1_idx` (`categorias_fornecedor_id` ASC) VISIBLE,
+  INDEX `fk_fornecedor_categorias_fornecedor1_idx` (`categorias_fornecedor_id` ASC),
   CONSTRAINT `fk_fornecedor_categorias_fornecedor1`
     FOREIGN KEY (`categorias_fornecedor_id`)
     REFERENCES `categorias_fornecedor` (`id`)
@@ -39,23 +46,12 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `img_avatar` TEXT NULL DEFAULT NULL,
   `fornecedor_id` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_usuario_fornecedor_idx` (`fornecedor_id` ASC) VISIBLE,
+  INDEX `fk_usuario_fornecedor_idx` (`fornecedor_id` ASC),
   CONSTRAINT `fk_usuario_fornecedor`
     FOREIGN KEY (`fornecedor_id`)
     REFERENCES `fornecedor` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 19
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci
-
-
-CREATE TABLE IF NOT EXISTS `categorias_fornecedor` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nome_categoria` VARCHAR(45) NULL,
-  `tipo_categoria` char(1) default 'P',
-  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -65,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `fornecedor_servicos` (
   `nome_servico` VARCHAR(200) NULL,
   `valor_servico` DECIMAL(10,2) NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_fornecedor_servicos_fornecedor1_idx` (`fornecedor_id` ASC) VISIBLE,
+  INDEX `fk_fornecedor_servicos_fornecedor1_idx` (`fornecedor_id` ASC),
   CONSTRAINT `fk_fornecedor_servicos_fornecedor1`
     FOREIGN KEY (`fornecedor_id`)
     REFERENCES `fornecedor` (`id`)
@@ -83,8 +79,8 @@ CREATE TABLE IF NOT EXISTS `agendamento` (
   nome varchar(200) null,
 	nome_pet varchar(200) null,
   PRIMARY KEY (`id`),
-  INDEX `fk_solicitacao_usuario1_idx` (`usuario_id` ASC) VISIBLE,
-  INDEX `fk_solicitacao_fornecedor1_idx` (`fornecedor_id` ASC) VISIBLE,
+  INDEX `fk_solicitacao_usuario1_idx` (`usuario_id` ASC),
+  INDEX `fk_solicitacao_fornecedor1_idx` (`fornecedor_id` ASC),
   CONSTRAINT `fk_solicitacao_usuario1`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `usuario` (`id`)
@@ -100,8 +96,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `agendamento_servicos` (
   `agendamento_id` INT NOT NULL,
   `fornecedor_servicos_id` INT NOT NULL,
-  INDEX `fk_agenda_servicos_agendamento1_idx` (`agendamento_id` ASC) VISIBLE,
-  INDEX `fk_agenda_servicos_fornecedor_servicos1_idx` (`fornecedor_servicos_id` ASC) VISIBLE,
+  INDEX `fk_agenda_servicos_agendamento1_idx` (`agendamento_id` ASC),
+  INDEX `fk_agenda_servicos_fornecedor_servicos1_idx` (`fornecedor_servicos_id` ASC),
   CONSTRAINT `fk_agenda_servicos_agendamento1`
     FOREIGN KEY (`agendamento_id`)
     REFERENCES `agendamento` (`id`)
@@ -119,9 +115,9 @@ CREATE TABLE IF NOT EXISTS `chats` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `agendamento_id` INT NOT NULL,
   `status` CHAR(1) NULL DEFAULT 'A',
-  `data_criacao` DATETIME NULL DEFAULT now(),
+  `data_criacao` DATETIME NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_chats_agendamento1_idx` (`agendamento_id` ASC) VISIBLE,
+  INDEX `fk_chats_agendamento1_idx` (`agendamento_id` ASC),
   CONSTRAINT `fk_chats_agendamento1`
     FOREIGN KEY (`agendamento_id`)
     REFERENCES `agendamento` (`id`)
