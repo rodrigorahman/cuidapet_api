@@ -1,7 +1,9 @@
 import 'package:cuidapet_api/config/database_connection.dart';
+import 'package:cuidapet_api/controllers/fornecedores/dto/salvar_fornecedor_request.dart';
 import 'package:cuidapet_api/models/categorias_model.dart';
 import 'package:cuidapet_api/models/fornecedor_model.dart';
 import 'package:cuidapet_api/models/fornecedor_servicos_model.dart';
+import 'package:cuidapet_api/utils/cripty_utils.dart';
 import 'package:mysql1/mysql1.dart';
 
 class FornecedoresRepository {
@@ -32,9 +34,7 @@ class FornecedoresRepository {
               'nome': e['nome'] as String,
               'logo': (e['logo'] as Blob)?.toString(),
               'distancia': e['distancia'] as double,
-              'categoria': {
-                'id': e['categorias_fornecedor_id'] as int
-              }
+              'categoria': {'id': e['categorias_fornecedor_id'] as int}
             },
           )
           .toList();
@@ -110,6 +110,32 @@ class FornecedoresRepository {
       rethrow;
     } finally {
       await conn.close();
+    }
+  }
+
+  Future<void> criarFornecedor(SalvarFornecedorRequest fornecedor) async {
+    MySqlConnection conn;
+
+    try {
+      conn = await DatabaseConnection.openConnection();
+      await conn.transaction((_) async {
+        final result = await conn.query(
+          "insert into fornecedor(id, nome, logo, imagem, endereco, telefone, latlng) values(?,?,?,?,?,?,Point(?,?))",
+          [null, fornecedor.nome, fornecedor.logo, null, fornecedor.endereco, fornecedor.telefone, fornecedor.latitude, fornecedor.longitude],
+        );
+
+        final idFornecedor = result.insertId;
+
+        await conn.query(
+          "insert usuario(email, tipo_cadastro, senha, img_avatar, fornecedor_id) values(?, ?, ?, ?, ?)",
+          [fornecedor.usuario, 'APP', CriptyUtils.generateSHA256Hash(fornecedor.senha), fornecedor.logo, idFornecedor],
+        );
+      });
+    } on MySqlException catch (e) {
+      print(e);
+      rethrow;
+    } finally {
+      await conn?.close();
     }
   }
 }

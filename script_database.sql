@@ -124,3 +124,14 @@ CREATE TABLE IF NOT EXISTS `chats` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+ALTER TABLE `usuario` 
+ADD COLUMN `fornecedor_id` INT NULL AFTER `img_avatar`,
+ADD INDEX `usuario_fornecedor_id_fk_idx` (`fornecedor_id` ASC);
+
+ALTER TABLE `usuario` 
+ADD CONSTRAINT `usuario_fornecedor_id_fk`
+  FOREIGN KEY (`fornecedor_id`)
+  REFERENCES `fornecedor` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;

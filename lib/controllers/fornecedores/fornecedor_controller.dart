@@ -1,6 +1,7 @@
 import 'package:cuidapet_api/repositories/fornecedores_repository.dart';
 
 import '../../cuidapet_api.dart';
+import 'dto/salvar_fornecedor_request.dart';
 
 class FornecedorController extends ResourceController {
   
@@ -39,6 +40,19 @@ class FornecedorController extends ResourceController {
       print(e);
       print(s);
       return Response.serverError(body: {'mensagem': 'Erro ao buscar serviços do fornecedor'});
+    }
+  }
+
+  @Operation.post()
+  Future<Response> salvarFornecedor(@Bind.body() SalvarFornecedorRequest salvarFornecedor) async {
+    try {
+      await _repository.criarFornecedor(salvarFornecedor);
+    return Response.ok({});
+
+    } catch (e, s) {
+      print(e);
+      print(s);
+      return Response.serverError(body: {'mensagem': 'Erro ao salvar fornecedor'});
     }
   }
 }
