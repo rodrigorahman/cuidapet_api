@@ -1,3 +1,4 @@
+import 'package:cuidapet_api/exceptions/user_notfound_exception.dart';
 import 'package:cuidapet_api/repositories/usuario_repository.dart';
 import 'package:cuidapet_api/utils/jwt_utils.dart';
 import 'package:jaguar_jwt/jaguar_jwt.dart';
@@ -47,6 +48,9 @@ class JwtAuthenticationMiddleware extends Controller {
 
       return request;
     } on JwtException catch (e) {
+      print(e);
+      return Response.unauthorized();
+    } on UserNotFoundException catch(e) {
       print(e);
       return Response.unauthorized();
     }
