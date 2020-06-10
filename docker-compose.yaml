@@ -9,4 +9,4 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: cuidapet
     volumes:
-      - ./mysql_data:/var/lib/mysql
+      - ../mysql_data:/var/lib/mysql
