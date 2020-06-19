@@ -139,3 +139,6 @@ ADD CONSTRAINT `usuario_fornecedor_id_fk`
 INSERT INTO categorias_fornecedor (id, nome_categoria, tipo_categoria) VALUES (1, 'Petshop', 'P');
 INSERT INTO categorias_fornecedor (id, nome_categoria, tipo_categoria) VALUES (2, 'Veterinária', 'V');
 INSERT INTO categorias_fornecedor (id, nome_categoria, tipo_categoria) VALUES (3, 'Pet Center', 'C');
+
+ALTER TABLE `usuario` 
+ADD UNIQUE INDEX `email_UNIQUE` (`email` ASC);
