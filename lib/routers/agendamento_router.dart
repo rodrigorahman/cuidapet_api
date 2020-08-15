@@ -8,13 +8,16 @@ import '../cuidapet_api.dart';
 class AgendamentoRouter implements IRoutersConfig {
   @override
   void configure(Router router) {
+    
+    // OK
     router.route('/agendamento/agendar')
       .link(() => JwtAuthenticationMiddleware())
       .link(() => AgendamentoController());
-
+    // OK
     router.route('/agendamentos')
       .link(() => JwtAuthenticationMiddleware())
       .link(() => AgendamentoController());
+
 
       router.route('/agendamentos/fornecedor')
       .link(() => JwtAuthenticationMiddleware())
@@ -23,6 +26,7 @@ class AgendamentoRouter implements IRoutersConfig {
           .buscarAgendamentoDoFornecedor(request.attachments['user'] as UsuarioModel);
       });
 
+      // OK
       router.route('/agendamento/:id/status/:status')
       .link(() => JwtAuthenticationMiddleware())
       .linkFunction((request) async {

@@ -11,7 +11,7 @@ class LoginRouters implements IRoutersConfig {
     
     router.route("/login")
       .link(() => LoginController());
-    
+    // Não utiizado
     router.route("/login/password")
       .link(() => JwtAuthenticationMiddleware())
       .link(() => LoginController());

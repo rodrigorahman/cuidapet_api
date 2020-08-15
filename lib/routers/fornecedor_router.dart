@@ -7,7 +7,8 @@ import '../cuidapet_api.dart';
 class FornecedorRouters implements IRoutersConfig {
   @override
   void configure(Router router) {
-  
+   
+    // OK
     router.route("/fornecedor")
       .linkFunction((request) async {
         
@@ -17,18 +18,20 @@ class FornecedorRouters implements IRoutersConfig {
           return FornecedorController().salvarFornecedor(req);
         }
         
-        return Response.notFound();
-
+           return Response.notFound();
       });
 
+    // OK
     router.route("/fornecedores")
       .link(() => JwtAuthenticationMiddleware())
       .link(() => FornecedorController());
     
+    // OK
     router.route("/fornecedores/:id")
       .link(() => JwtAuthenticationMiddleware())
       .link(() => FornecedorController());
 
+    // OK
     router.route("/fornecedores/servicos/:fornecedorId")
       .link(() => JwtAuthenticationMiddleware())
       .link(() => FornecedorController());

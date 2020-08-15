@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"data_agendamento\": \"2020-05-19T10:00:00\",\n\t\"fornecedor_id\" : 8,\n\t\"servicos\": [1,2,3],\n\t\"nome\": \"Rodrigo\",\n\t\"nome_pet\": \"Marley\"\n}",
+					"raw": "{\n\t\"data_agendamento\": \"2020-05-29T12:00:00\",\n\t\"fornecedor_id\" : 8,\n\t\"servicos\": [1,2,3],\n\t\"nome\": \"Rodrigo\",\n\t\"nome_pet\": \"Marley nova estrutura\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -33,46 +33,6 @@
 					"path": [
 						"agendamento",
 						"agendar"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Iniciar Chat",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "{{access_token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"data_agendamento\": \"2020-05-19T10:00:00\",\n\t\"fornecedor_id\" : 1,\n\t\"servicos\": [1,2,3],\n\t\"nome\": \"Rodrigo\",\n\t\"nome_pet\": \"Marley\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/agendamento/:id/iniciar-chat",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"agendamento",
-						":id",
-						"iniciar-chat"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "14"
-						}
 					]
 				}
 			},
@@ -143,78 +103,6 @@
 					],
 					"path": [
 						"agendamentos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Servicos de um agendamento",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "{{access_token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"data_agendamento\": \"2020-05-19T10:00:00\",\n\t\"fornecedor_id\" : 1,\n\t\"servicos\": [1,2,3]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/agendamento/3",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"agendamento",
-						"3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Servicos de um agendamento fornec",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "{{access_token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/agendamentos/fornecedor",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"agendamentos",
-						"fornecedor"
 					]
 				}
 			},

@@ -7,36 +7,23 @@
 	"item": [
 		{
 			"name": "Chats usuario",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
 						"type": "text",
-						"value": "{{access_token}}",
-						"disabled": true
+						"value": "{{access_token}}"
 					},
 					{
 						"key": "Authorization",
 						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTEzODQzNDUsImlhdCI6MTU5MTI5Nzk0NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdCIsIm5iZiI6MTU5MTI5Nzk0NSwic3ViIjoiMSJ9.rmryTtPXQW1Coi39ULZcEvtSYgIZjTKtVKXI7W9ON8U",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"data_agendamento\": \"2020-05-19T10:00:00\",\n\t\"fornecedor_id\" : 1,\n\t\"servicos\": [1,2,3]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://{{base_url}}/chats/usuario",
-					"protocol": "http",
+					"raw": "{{base_url}}/chats/usuario",
 					"host": [
 						"{{base_url}}"
 					],
@@ -49,12 +36,9 @@
 			"response": []
 		},
 		{
-			"name": "Chats fornecedor",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Iniciar Chat",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
@@ -64,7 +48,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"data_agendamento\": \"2020-05-19T10:00:00\",\n\t\"fornecedor_id\" : 1,\n\t\"servicos\": [1,2,3]\n}",
+					"raw": "{\n\t\"data_agendamento\": \"2020-05-19T10:00:00\",\n\t\"fornecedor_id\" : 1,\n\t\"servicos\": [1,2,3],\n\t\"nome\": \"Rodrigo\",\n\t\"nome_pet\": \"Marley\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -72,15 +56,21 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{base_url}}/chats/fornecedor/1",
-					"protocol": "http",
+					"raw": "{{base_url}}/chat/agendamento/:id/iniciar",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"chats",
-						"fornecedor",
-						"1"
+						"chat",
+						"agendamento",
+						":id",
+						"iniciar"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "14"
+						}
 					]
 				}
 			},
@@ -94,13 +84,13 @@
 					{
 						"key": "Authorization",
 						"type": "text",
-						"value": "{{access_token}}",
-						"disabled": true
+						"value": "{{access_token}}"
 					},
 					{
 						"key": "Authorization",
 						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTEzODQzNDUsImlhdCI6MTU5MTI5Nzk0NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdCIsIm5iZiI6MTU5MTI5Nzk0NSwic3ViIjoiMSJ9.rmryTtPXQW1Coi39ULZcEvtSYgIZjTKtVKXI7W9ON8U",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -113,119 +103,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{base_url}}/chats/notificar",
-					"protocol": "http",
+					"raw": "{{base_url}}/chats/notificar",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"chats",
 						"notificar"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "SendMessage Push Notification",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "key=AAAAiWLU4ok:APA91bFqK-LOKBiytCbxOSTMokgyvYZhm-60yiDi-qc0M4AAwoTrA122Y1AnAuRFbd1BG5tIMScjFzYR6E2TQz9j_Cl5tjJPVLpzTfWgHPEEUM82uXX6nR7R-4cJeBxC9utMNm_BpVR6"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"notification\": {\n        \"body\": \"this is dsa body\",\n        \"title\": \"this is dsa title\"\n    },\n    \"priority\": \"high\",\n    \"data\": {\n        \"click_action\": \"FLUTTER_NOTIFICATION_CLICK\",\n        \"id\": \"1\",\n        \"status\": \"done\"\n    },\n    \"to\": \"e3r4hmX8tEX-g3JMj7T2zJ:APA91bENxLWUSNJDIc1VzBLDWKwHKI1EEpMQ4GiVTRiWT8gBuNc1ohwqG9sb1PKgql7X4ZtUcNwxqnbvhdhPV-CX1lKxTpS3vcNFK6qaQm8vgmbQAy-_5I7Fr_hCaqb9lQ8GjsZHO7i0\"\n}",
-					"options": {
-						"raw": {}
-					}
-				},
-				"url": {
-					"raw": "https://fcm.googleapis.com/fcm/send",
-					"protocol": "https",
-					"host": [
-						"fcm",
-						"googleapis",
-						"com"
-					],
-					"path": [
-						"fcm",
-						"send"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "SendMessage Push Notification IOS",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "key=AAAAiWLU4ok:APA91bFqK-LOKBiytCbxOSTMokgyvYZhm-60yiDi-qc0M4AAwoTrA122Y1AnAuRFbd1BG5tIMScjFzYR6E2TQz9j_Cl5tjJPVLpzTfWgHPEEUM82uXX6nR7R-4cJeBxC9utMNm_BpVR6"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"notification\": {\n        \"body\": \"teste\",\n        \"title\": \"teste\"\n    },\n    \"priority\": \"high\",\n    \"data\": {\n    \t\"id\": 1,\n        \"click_action\": \"FLUTTER_NOTIFICATION_CLICK\"\n    },\n    \"to\": \"eaTLOP6oTdq9trmlWmxEOE:APA91bEQjb2XxelLoc8c1RcWNoMfzOzniyJjll0ZZQZdpN4EgEY--je6ykJoQbCzQye5CztP4tajHh0S5xJ2L1YThxaPSUptNjlkHm6jDQdD-4xdq7OtHQ8-nMyTjKt8XIliK3Peg6hX\"\n}"
-				},
-				"url": {
-					"raw": "https://fcm.googleapis.com/fcm/send",
-					"protocol": "https",
-					"host": [
-						"fcm",
-						"googleapis",
-						"com"
-					],
-					"path": [
-						"fcm",
-						"send"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "SendMessage Push Notification Copy",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "key=AAAAiWLU4ok:APA91bFqK-LOKBiytCbxOSTMokgyvYZhm-60yiDi-qc0M4AAwoTrA122Y1AnAuRFbd1BG5tIMScjFzYR6E2TQz9j_Cl5tjJPVLpzTfWgHPEEUM82uXX6nR7R-4cJeBxC9utMNm_BpVR6"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"notification\": {\n        \"body\": \"this is a body\",\n        \"title\": \"this is a title\"\n    },\n    \"priority\": \"high\",\n    \"data\": {\n        \"click_action\": \"FLUTTER_NOTIFICATION_CLICK\",\n        \"id\": \"1\",\n        \"status\": \"done\"\n    },\n    \"to\": \"eaTLOP6oTdq9trmlWmxEOE:APA91bEQjb2XxelLoc8c1RcWNoMfzOzniyJjll0ZZQZdpN4EgEY--je6ykJoQbCzQye5CztP4tajHh0S5xJ2L1YThxaPSUptNjlkHm6jDQdD-4xdq7OtHQ8-nMyTjKt8XIliK3Peg6hX\"\n}"
-				},
-				"url": {
-					"raw": "https://fcm.googleapis.com/fcm/send",
-					"protocol": "https",
-					"host": [
-						"fcm",
-						"googleapis",
-						"com"
-					],
-					"path": [
-						"fcm",
-						"send"
 					]
 				}
 			},

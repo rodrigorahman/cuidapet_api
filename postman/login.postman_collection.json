@@ -33,10 +33,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/login",
+					"raw": "http://192.168.15.100:8888/login",
+					"protocol": "http",
 					"host": [
-						"{{base_url}}"
+						"192",
+						"168",
+						"15",
+						"100"
 					],
+					"port": "8888",
 					"path": [
 						"login"
 					]
@@ -45,12 +50,12 @@
 			"response": []
 		},
 		{
-			"name": "Login Fornecedor",
+			"name": "Atualizar Avatar",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "dab0500e-e3d8-42c7-aac7-97b8cb49d1f6",
+						"id": "2cfcb61c-fd75-431a-a4e6-2f9645841862",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"pm.globals.set(\"access_token\", jsonData.access_token);"
@@ -60,11 +65,17 @@
 				}
 			],
 			"request": {
-				"method": "POST",
-				"header": [],
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{access_token}}"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"login\": \"fornecedorx@gmail.com\",\n\t\"senha\": \"123123\",\n\t\"facebookLogin\": false\n}",
+					"raw": "{\n\t\"url_avatar\": \"https://i.pinimg.com/originals/20/ec/24/20ec2480e5d0e9397a254a7a83ebd060.jpg\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -72,12 +83,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/login",
+					"raw": "{{base_url}}/usuario/avatar",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"login"
+						"usuario",
+						"avatar"
 					]
 				}
 			},
@@ -191,7 +203,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"login\": \"kxkppdsrot_1590560458@tfbnw.net\",\n\t\"facebookLogin\": true\n}",
+					"raw": "{\n\t\"login\": \"kxkppdsrot_1590560458@tfbnw.net3\",\n\t\"facebookLogin\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -223,7 +235,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"ios_token\": \"DASDASDSA\"\n}",
+					"raw": "{\n\t\"android_token\": \"android TOKEN\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -257,7 +269,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODk5MDc3NjMsImlhdCI6MTU4OTkwNzc2MSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdCIsIm5iZiI6MTU4OTkwNzc2MSwic3ViIjoiMSJ9.z6_eL-FJ_iKNqMiuheD-IXODqkOzzKLmR-_ExNckyR8w\",\n\t\"refresh_token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAwODA1NjIsImlhdCI6MTU4OTkwNzc2MiwiaXNzIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMU9EazVNRGMzTmpNc0ltbGhkQ0k2TVRVNE9Ua3dOemMyTVN3aWFYTnpJam9pYUhSMGNEb3ZMMnh2WTJGc2FHOXpkQ0lzSW01aVppSTZNVFU0T1Rrd056YzJNU3dpYzNWaUlqb2lNU0o5Lno2X2VMLUZKX2lLTnFNaXVoZUQtSVhPRHFrT3p6S0xtUi1fRXhOY2t5UjgiLCJuYmYiOjE1ODk5MDc3NjAsInN1YiI6IlJlZnJlc2hUb2tlbiJ9.cDjjM53Bn7BymtvyWGWVF5GtSbzH72ufMfiT3QDyI6o\"\n}",
+					"raw": "{\n\t\"token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTI2OTY3MzYsImlhdCI6MTU5MjYxMDMzNiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdCIsIm5iZiI6MTU5MjYxMDMzNiwic3ViIjoiMSJ9.3O2QBO-Ihhqd7fPhR696PHxwQARj3TcOR6URu-lWquw\",\n\t\"refresh_token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjQxNDYzNDMsImlhdCI6MTU5MjYxMDM0MywiaXNzIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmxlSEFpT2pFMU9USTJPVFkzTXpZc0ltbGhkQ0k2TVRVNU1qWXhNRE16Tml3aWFYTnpJam9pYUhSMGNEb3ZMMnh2WTJGc2FHOXpkQ0lzSW01aVppSTZNVFU1TWpZeE1ETXpOaXdpYzNWaUlqb2lNU0o5LjNPMlFCTy1JaGhxZDdmUGhSNjk2UEh4d1FBUmozVGNPUjZVUnUtbFdxdXciLCJuYmYiOjE1OTI1MjM5NDMsInN1YiI6IlJlZnJlc2hUb2tlbiJ9.2aUNMNxV83uuaZy1vME7lXbhuCXmianIjOZMT3wVkC8\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

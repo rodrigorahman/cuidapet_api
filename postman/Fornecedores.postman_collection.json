@@ -39,38 +39,6 @@
 			"response": []
 		},
 		{
-			"name": "Salvar Fornecedor",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "{{access_token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"nome\": \"Fornecedor X\",\n    \"logo\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRk1sCsesYoQf26g6d-kqSHOmLskuStiWtFZYck3Rt3jXbr5bfP&usqp=CAU\",\n    \"endereco\": \"Rua 123 de oliveira 4\",\n    \"telefone\": \"11987654543\",\n    \"latitude\": 37.3518115,\n    \"longitude\": -122.0001837,\n    \"categoria\": 1,\n    \"usuario\": \"fornecedorx@gmail.com\",\n    \"senha\": \"123123\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/fornecedor",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"fornecedor"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get By Id",
 			"request": {
 				"method": "GET",
