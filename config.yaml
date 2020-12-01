@@ -1,6 +1,6 @@
 database:
-  host: localhost
-  user: root
+  host: us-cdbr-east-02.cleardb.com
+  user: bc55c492b25875
   port: 3306
-  password: cuidapet
-  database: cuidapet_db
+  password: e5a4eb2d
+  database: heroku_3e6631d37b97f65
