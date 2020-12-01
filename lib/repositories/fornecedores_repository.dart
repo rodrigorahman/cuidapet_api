@@ -23,7 +23,7 @@ class FornecedoresRepository {
                             sin(radians(ST_X(f.latlng)))
                 )) AS distancia
             FROM fornecedor f
-            HAVING distancia <= $distancia;
+            HAVING distancia <= $distancia order by distancia ASC;
       ''');
 
       return result
