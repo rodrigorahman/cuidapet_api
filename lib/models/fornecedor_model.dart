@@ -8,7 +8,6 @@ class FornecedorModel {
     this.id,
     this.nome,
     this.logo,
-    this.imagem,
     this.endereco,
     this.telefone,
     this.latitude,
@@ -21,7 +20,6 @@ class FornecedorModel {
   int id;
   String nome;
   String logo;
-  String imagem;
   String endereco;
   String telefone;
   double latitude;
@@ -33,7 +31,6 @@ class FornecedorModel {
       'id': id,
       'nome': nome,
       'logo': logo,
-      'imagem': imagem,
       'endereco': endereco,
       'telefone': telefone,
       'latitude': latitude,

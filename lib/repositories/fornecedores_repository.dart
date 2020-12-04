@@ -52,7 +52,7 @@ class FornecedoresRepository {
     try {
       conn = await DatabaseConnection.openConnection();
       final result = await conn.query(''' 
-        select f.id, f.nome, f.logo, f.imagem, f.endereco, f.telefone, ST_X(f.latlng) as lat, ST_Y(f.latlng) as lng, f.categorias_fornecedor_id
+        select f.id, f.nome, f.logo, f.endereco, f.telefone, ST_X(f.latlng) as lat, ST_Y(f.latlng) as lng, f.categorias_fornecedor_id
             , c.id, c.nome_categoria, c.tipo_categoria
         from fornecedor as f
         inner join categorias_fornecedor as c on (f.categorias_fornecedor_id = c.id)
@@ -64,7 +64,6 @@ class FornecedoresRepository {
         id: data['id'] as int,
         nome: data['nome'] as String,
         logo: (data['logo'] as Blob)?.toString(),
-        imagem: data['imagem'] as String,
         endereco: data['endereco'] as String,
         telefone: data['telefone'] as String,
         latitude: data['lat'] as double,
@@ -120,8 +119,8 @@ class FornecedoresRepository {
       conn = await DatabaseConnection.openConnection();
       await conn.transaction((_) async {
         final result = await conn.query(
-          "insert into fornecedor(id, nome, logo, imagem, endereco, telefone, latlng) values(?,?,?,?,?,?,Point(?,?))",
-          [null, fornecedor.nome, fornecedor.logo, null, fornecedor.endereco, fornecedor.telefone, fornecedor.latitude, fornecedor.longitude],
+          "insert into fornecedor(id, nome, logo, endereco, telefone, latlng) values(?,?,?,?,?,?,Point(?,?))",
+          [null, fornecedor.nome, fornecedor.logo, fornecedor.endereco, fornecedor.telefone, fornecedor.latitude, fornecedor.longitude],
         );
 
         final idFornecedor = result.insertId;
