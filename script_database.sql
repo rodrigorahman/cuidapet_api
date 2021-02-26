@@ -171,6 +171,33 @@ INSERT INTO `fornecedor` VALUES
 (null,'PETSHOP ANIMAMUNDI','https://picsum.photos/seed/0.15985423993305697/300','Avenida Paulo Faccini','11222222222',0x0000000001010000002DF5E27ACA7437C08E0B62FB244447C0,3),
 (null,'HOTEL E VET AU AU','https://picsum.photos/seed/0.6322219172792714/300','Rua Tolentino Filgueiras','11222222222',0x000000000101000000CA4862EEFFF637C0C113C48A642A47C0,1);
 
+	       
+INSERT INTO usuario(id,email,senha,tipo_cadastro,ios_token,android_token,refresh_token,img_avatar, fornecedor_id) VALUES
+(null,'clinicajardim@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.8414244473366295/300',1),
+(null,'clinicaveterinariaatilio@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.24412205558654113/300',2),
+(null,'veterinariafradique@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.06549930671742121/300',3),
+(null,'veterinariacentral@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.04738860395493787/300',4),
+(null,'clinicaveterinariafarialima@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.3108899912898336/300',5),
+(null,'vetberrini@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.48041267551520156/300',6),
+(null,'clinicacentralabc@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.3298311897831328/300',7),
+(null,'clinicamatriz@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.9430788028455142/300',8),
+(null,'clinicapadreantonio@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.9500168226193794/300',9),
+(null,'petcentercentral@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.5626106807613844/300',10),
+(null,'petcenterpraça@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.13945180749469605/300',11),
+(null,'hotelevetsalvaluz@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.5860884921495696/300',12),
+(null,'petcateauau-miau@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.880615359992362/300',13),
+(null,'petcenteranimaisluz@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.45689568711155626/300',14),
+(null,'clinicatucunare-praça2@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.7554800917911157/300',15),
+(null,'vetbalderi@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.1813100512896758/300',16),
+(null,'hospital24hdr.bacci@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.572463037979289/300',17),
+(null,'veterinariapetmania2@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.24500753660221355/300',18),
+(null,'hospitalveterinarioluz@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.5029761302312614/300',19),
+(null,'veterinariasalvação@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.3514789215768491/300',20),
+(null,'petshopcalfat@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.15131461448158567/300',21),
+(null,'vetreliquiacentro@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.7116676575612907/300',22),
+(null,'petshopanimamundi@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.15985423993305697/300',23),
+(null,'hotelevetauau@gmail.com','96cae35ce8a9b0244178bf28e4966c2ce1b8385723a96a6b838858cdd6ca0a1e','APP',null,null,null,'https://picsum.photos/seed/0.6322219172792714/300',24);
+	       
  Insert into fornecedor_servicos VALUES
  (null,1,'HOTEL','45.00'),
  (null,1,'PETCARE','22.00'),
