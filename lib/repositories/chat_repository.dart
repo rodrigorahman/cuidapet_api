@@ -20,9 +20,13 @@ class ChatRepository {
           inner join fornecedor f on a.fornecedor_id = f.id
       ''';
 
+      int usuarioId;
+
       if (usuarioData.fornecedorId == null) {
+        usuarioId = usuario;
         query += 'where a.usuario_id = ?';
       } else {
+        usuarioId = usuarioData.fornecedorId; 
         query += 'where a.fornecedor_id = ?';
       }
 
@@ -31,8 +35,8 @@ class ChatRepository {
         order by c.data_criacao  
       ''';
 
-      final result = await conn.query(query, [usuario]);
-
+      final result = await conn.query(query, [usuarioId]);
+      print(result.length);
       return result.map((e) {
         return ChatModel(id: e[0] as int, status: e[2] as String, nome: e[3] as String, nomePet: e[4] as String, fornecedor: FornecedorModel(id: e[5] as int, nome: e[6] as String, logo: (e[7] as Blob).toString()), usuario: e[8] as int);
       }).toList();
